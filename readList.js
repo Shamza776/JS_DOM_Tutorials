@@ -110,6 +110,15 @@ book.removeAttribute('class');
 book.setAttribute('class', 'name')
 */
 
+//functionality for hide books
+const hide = document.getElementById('hide'); //grabbing the element
+hide.addEventListener('change', function(e){
+    if(hide.checked){      //use the check button ..mainly used with checkboxes, to confirm if chcking has taken place
+        list.style.display = 'none';
+    }else{
+        list.style.display = 'block' //or initial
+    }
+})
 
 
 
