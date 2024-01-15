@@ -64,11 +64,57 @@ link.addEventListener('click', function(e){
 
 //interacting with Form
 //grab the form object ,and since it will return a collection, you specify which one. You can use the id or index number
-const addForm = document.forms['#add-book']; //in this case we've used id
+const addForm = document.forms['add-book']; 
+//in this case we've used id
  //we then add an eventListener incase an event is fired
  addForm.addEventListener('submit', function(e){
-    e.preventDefault(); //prevent default, which is the refreshing of the page whenever the add button is clicked for submission
+    e.preventDefault(); 
+    //prevent default, which is the refreshing of the page whenever the add button is clicked for submission
     //grab the value to print it
     const value = addForm.querySelector('input[type = "text"]').value;
     console.log(value);
+    //to actually create and append elements to our HTML
+    const li = document.createElement('li');
+    const bookName = document.createElement('span');
+    const deleteBtn = document.createElement('span');
+
+    //add content to the created elements
+    bookName.textContent = value;
+    deleteBtn.textContent = 'delete';
+
+    //add classes
+    bookName.classList.add('name');
+    deleteBtn.classList.add('delete');
+    
+    //append to DOM
+    li.appendChild(bookName);
+    li.appendChild(deleteBtn); //according to its sequence
+    list.appendChild(li); 
  })
+
+ //how to add multiple classes
+ //const listItem = document.querySelector('li : last-child'); 
+ //listItem.className =('test');
+ //the next class should have a space before tyrping the className value
+ //listItem.className += (' test1')
+
+ /* ///to find and set attributes
+ const book = document.querySelector('li:first-child .name')
+book.getAttribute('class')
+//set attribute
+book.setAttribute('class', 'name2')
+//to check whether its there
+book.hasAttribute('class');
+//to remove an attribute
+book.removeAttribute('class');
+book.setAttribute('class', 'name')
+*/
+
+
+
+
+
+
+
+
+
