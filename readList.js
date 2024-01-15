@@ -61,3 +61,14 @@ link.addEventListener('click', function(e){
     e.preventDefault();
     console.log('navigation to', e.target.textContent, 'was prevented');
 })
+
+//interacting with Form
+//grab the form object ,and since it will return a collection, you specify which one. You can use the id or index number
+const addForm = document.forms['#add-book']; //in this case we've used id
+ //we then add an eventListener incase an event is fired
+ addForm.addEventListener('submit', function(e){
+    e.preventDefault(); //prevent default, which is the refreshing of the page whenever the add button is clicked for submission
+    //grab the value to print it
+    const value = addForm.querySelector('input[type = "text"]').value;
+    console.log(value);
+ })
