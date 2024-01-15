@@ -17,7 +17,8 @@ let elements = document.getElementsByClassName('title');
 
 //we're adding functionality to the remove button
 //we grab the element
- let btn = document.querySelectorAll('#book-list .delete')
+
+/* let btn = document.querySelectorAll('#book-list .delete')
  console.log(btn);
 //change them to an array
 btn = Array.from(btn)
@@ -26,11 +27,37 @@ console.log(btn)
 btn.forEach(function(btn){
     btn.addEventListener('click', function(e){
        // if(confirm("Do you want to delete this book?")){
-            e.target.parentNode.remove()
+            //e.target.parentNode.remove()
         //}
         //OR
        //let parent = document.getElementById('#book-list');
-       //let li = e.target.parentElement
-       //li.parentNode.removeChild(li);
+       let li = e.target.parentElement
+       li.parentNode.removeChild(li);
     })
+})*/
+
+/*the method used above applies the bubbling technique: where if we click the delete , we'll fire the even for the delete 
+ then 'BUBBLE' up to the parent (li) and it will fire the callback function. This will happen whenever we click th button.
+ although this isn't right cause if we were to add anoteher item in the list, the delete button won't function as it should.
+ This is because we've already attached the eventListeners with each button, the new button is not newly linked with it.
+ and also, if we have a lot of these buttons on the page then it's gonna be a big task to attach all the buttons to the 
+ event listener.It take longer for JavaScript to do or complete.
+ in this case, attach the event listener to the UL, only one element we've attached the event listener to, and target the
+ delete button, this way when we click the button, the event is going to bubble up to the UL but cn find out the target,
+ which was originally clicked, which button , then we can delete that li associated with the button. This method is much more
+ efficient to do. */
+
+const list = document.querySelector('#book-list ul')
+list.addEventListener('click', function(e){
+    if(e.target.className === 'delete'){
+        const li = e.target.parentElement;
+        list.removeChild(li);
+    }
+})
+
+ //how to prevent a default behavior //assuming we have a link
+const link = document.querySelector("#page-banner a");
+link.addEventListener('click', function(e){
+    e.preventDefault();
+    console.log('navigation to', e.target.textContent, 'was prevented');
 })
