@@ -120,8 +120,19 @@ hide.addEventListener('change', function(e){
     }
 })
 
-
-
+//filtering the search box
+//const searchBar = document.getElementById("search-books").querySelector("input")   //grabbing the reference
+const searchBox = document.forms["search-books"].querySelector("input"); //grab the input using the form object, specify which form we've used
+searchBox.addEventListener("keyup", function(e){
+ const term = e.target.value.toLowerCase();   //grabbed the value on the search input
+ const books = list.getElementsByTagName("li"); //grab the list of the books
+  Array.from(books).forEach(function(book){     //convert to an array
+      const title = book.firstElementChild.textContent;  //grabbed the first list element and its text content
+      if(title.toLowerCase().indexOf(term) != -1){ //this line means that we are searching for the value that was typed in and returns the index of where the value is found from the first list element. If the value is not found, it will return -1, so that's why....if the index is not equal to -1, then the book in the list matching it will be displayed.
+      book.style.display = "block";
+      }else {book.style.display = "none"; }
+  })
+})
 
 
 
